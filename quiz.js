@@ -31,7 +31,7 @@ let questions = [{
         "answer_2": "Köln",
         "answer_3": "München",
         "answer_4": "Hamburg",
-        "right_answer": 3
+        "right_answer": 2
     }, {
         "question": "Welches ist die Bundeshauptstadt",
         "answer_1": "Berlin",
@@ -72,25 +72,33 @@ function showQuestion() {
 }
 
 function answer(selection) {
-
+    // zeigt die aktuelle Frage an
     let question = questions[currentQuestion];
 
     let selectedQuestionNumber = selection.slice(-1);
-
-    console.log('selectedQuestionNumber is', selectedQuestionNumber);
-    console.log('current question is', question['right_answer']);
 
     //immer die richtige Antwort grün anzeigen
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
     if (selectedQuestionNumber == question['right_answer']) {
-        console.log('Richtige Antwort!!');
         document.getElementById(selection).parentNode.classList.add('bg-success');
     } else {
-        console.log('Falsche Antwort');
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
 
     }
+    // auf den nächste Frage Button zugrfeifen, wenn Antwort gegeben ist
+    document.getElementById('nextButton').disabled = false;
+}
+
+// soll die nächste Frage anzeigen dafür eine onclick Methode erstellt in html button
+
+function nextQuestion() {
+
+    currentQuestion++; // z.B. von 0 auf 1
+    showQuestion(); // rufe showQuestion auf, um die nächste Frage zu sehen
+
+    document.getElementById('nextButton').disabled = true; // wartet bis geantwortet wird und schaltet button wieder frei
+
 
 }
