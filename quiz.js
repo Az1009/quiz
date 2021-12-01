@@ -71,9 +71,17 @@ function showQuestion() { // 3 zeigt die aktuelle Frage an
         //Anzahl der gesamten Fragen
         document.getElementById('amountOfQuestions').innerHTML = questions.length;
         document.getElementById('amountOfRightQuestions').innerHTML = rightQuestions;
+    } else { // show next question
+
+        // Berechnung des Fortschrittbalkens 
+        let percent = (currentQuestion + 1) / questions.length;
+        percent = Math.round(percent * 100);
+
+        document.getElementById('progressBar').innerHTML = `${percent}%`;
+        document.getElementById('progressBar').style = ` width: ${percent}%;`;
 
 
-    } else {
+        console.log(' fortschritt:', percent);
 
         let question = questions[currentQuestion];
 
