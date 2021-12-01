@@ -31,3 +31,13 @@ body {
 .bg-danger {
     color: white;
 }
+
+.width-100 {
+    width: 100%;
+}
+
+.textCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

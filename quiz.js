@@ -54,6 +54,8 @@ let questions = [{
 
 let currentQuestion = 0;
 
+let rightQuestions = 0;
+
 function init() {
     // 2. Text und Fragen anzeigen
     document.getElementById('all-questions').innerHTML = questions.length;
@@ -62,11 +64,16 @@ function init() {
 
 function showQuestion() { // 3 zeigt die aktuelle Frage an
 
-    if (currentQuestion >= questions.lenght) {
+    if (currentQuestion >= questions.length) {
+        document.getElementById('endScreen').style = '';
+        document.getElementById('questionBody').style = 'display: none';
+
+        //Anzahl der gesamten Fragen
+        document.getElementById('amountOfQuestions').innerHTML = questions.length;
+        document.getElementById('amountOfRightQuestions').innerHTML = rightQuestions;
+
 
     } else {
-
-
 
         let question = questions[currentQuestion];
 
@@ -90,8 +97,10 @@ function answer(selection) {
     //immer die richtige Antwort grün anzeigen
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if (selectedQuestionNumber == question['right_answer']) {
+    if (selectedQuestionNumber == question['right_answer']) { // richtige Antwort
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        rightQuestions++;
+
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');

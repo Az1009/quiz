@@ -26,7 +26,26 @@
     <div class="container">
         <div class="card quiz-card">
             <img src="img/pen.webp" class="card-img-top">
-            <div class="card-body">
+
+
+
+            <div class="card-body" id="endScreen" style="display: none;">
+                <div class="textCenter">quiz beendet
+
+                </div>
+
+                <div>
+                    <img class="width-100" src="img/pokal.webp" alt="">
+                </div>
+
+                <div class="textCenter">
+                    du hast <b id="amountOfRightQuestions">XXX</b> Fragen von <b id="amountOfQuestions">XXX</b> richtig beantwortet
+                </div>
+
+            </div>
+
+            <!-- dieser Container wird angezeigt, wenn wir spielen -->
+            <div class="card-body" id="questionBody">
                 <h5 class="card-title" id="questionText">Frage</h5>
 
 
