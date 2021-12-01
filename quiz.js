@@ -26,14 +26,14 @@ let questions = [{
     },
 
     {
-        "question": "In welchem ​​Bundesland wurde die Developer Academie gegründet",
+        "question": "In welchem ​​Bundesland wurde die Developer Academie gegründet ?",
         "answer_1": "Berlin",
         "answer_2": "Köln",
         "answer_3": "München",
         "answer_4": "Hamburg",
-        "right_answer": 2
+        "right_answer": 3
     }, {
-        "question": "Welches ist die Bundeshauptstadt",
+        "question": "Welches ist die Bundeshauptstadt ?",
         "answer_1": "Berlin",
         "answer_2": "Köln",
         "answer_3": "München",
@@ -41,7 +41,7 @@ let questions = [{
         "right_answer": 1
     },
     {
-        "question": "In welchem Stadtteil von Berlin steht das KaDeWe",
+        "question": "In welchem Stadtteil von Berlin steht das KaDeWe ?",
         "answer_1": "Zehlendorf",
         "answer_2": "Moabit",
         "answer_3": "Charlottenburg",
@@ -59,16 +59,26 @@ function init() {
     document.getElementById('all-questions').innerHTML = questions.length;
     showQuestion();
 }
-// 3 zeigt die aktuelle Frage an
-function showQuestion() {
 
-    let question = questions[currentQuestion];
+function showQuestion() { // 3 zeigt die aktuelle Frage an
 
-    document.getElementById('questionText').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    if (currentQuestion >= questions.lenght) {
+
+    } else {
+
+
+
+        let question = questions[currentQuestion];
+
+        // Zahl der Frage ändern
+        document.getElementById('questionNumber').innerHTML = currentQuestion + 1;
+
+        document.getElementById('questionText').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    }
 }
 
 function answer(selection) {
@@ -96,9 +106,21 @@ function answer(selection) {
 function nextQuestion() {
 
     currentQuestion++; // z.B. von 0 auf 1
-    showQuestion(); // rufe showQuestion auf, um die nächste Frage zu sehen
 
     document.getElementById('nextButton').disabled = true; // wartet bis geantwortet wird und schaltet button wieder frei
 
+    resetAnswerButtons(); // rufe die Funktion hier auf, bei der nächsten Frage
+    showQuestion(); // rufe showQuestion auf, um die nächste Frage zu sehen
+}
 
+function resetAnswerButtons() { // entferne die klassen, um die Makierungen aufzuheben, wenn zur nächten Frage übergegangen wird
+
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }
