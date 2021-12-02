@@ -41,3 +41,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.newStartButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}

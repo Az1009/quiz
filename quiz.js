@@ -53,8 +53,13 @@ let questions = [{
 //4. zeigt die
 
 let currentQuestion = 0;
-
 let rightQuestions = 0;
+
+//sounds 
+
+let AUDIO_SUCCES = new Audio('sound/wow.mp3');
+let AUDIO_FAIL = new Audio('sound/wrong.mp3');
+
 
 function init() {
     // 2. Text und Fragen anzeigen
@@ -68,9 +73,11 @@ function showQuestion() { // 3 zeigt die aktuelle Frage an
         document.getElementById('endScreen').style = '';
         document.getElementById('questionBody').style = 'display: none';
 
+
         //Anzahl der gesamten Fragen
         document.getElementById('amountOfQuestions').innerHTML = questions.length;
         document.getElementById('amountOfRightQuestions').innerHTML = rightQuestions;
+        document.getElementById('header-image').src = 'img/pokal.webp';
     } else { // show next question
 
         // Berechnung des Fortschrittbalkens 
@@ -107,12 +114,13 @@ function answer(selection) {
 
     if (selectedQuestionNumber == question['right_answer']) { // richtige Antwort
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        AUDIO_SUCCES.play();
         rightQuestions++;
 
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
-
+        AUDIO_FAIL.play();
     }
     // auf den nächste Frage Button zugrfeifen, wenn Antwort gegeben ist
     document.getElementById('nextButton').disabled = false;
@@ -140,4 +148,13 @@ function resetAnswerButtons() { // entferne die klassen, um die Makierungen aufz
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function reStartGame() {
+    document.getElementById('header-image').src = 'img/pen.webp';
+    document.getElementById('questionBody').style = ''; // questionBody wieder anzeigen
+    document.getElementById('endScreen').style = 'display: none';
+    rightQuestions = 0;
+    currentQuestion = 0;
+    init();
 }

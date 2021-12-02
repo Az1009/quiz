@@ -24,8 +24,9 @@
 
     <!-- Karte aus Bootstrap -->
     <div class="container">
+
         <div class="card quiz-card">
-            <img src="img/pen.webp" class="card-img-top">
+            <img src="img/pen.webp" id="header-image" class="card-img-top">
 
             <!-- ProgressBar Bootstrap -->
 
@@ -33,7 +34,7 @@
                 <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;">25%</div>
             </div>
 
-            <div class="card-body" id="endScreen" style="display: none;">
+            <div class="card-body" id="endScreen">
                 <div class="textCenter">quiz beendet
 
                 </div>
@@ -44,6 +45,11 @@
 
                 <div class="textCenter">
                     du hast <b id="amountOfRightQuestions">XXX</b> Fragen von <b id="amountOfQuestions">XXX</b> richtig beantwortet
+                </div>
+
+                <!-- Button für den Neustart -->
+                <div class="newStartButton">
+                    <button onclick="reStartGame()" class="btn btn-primary">Erneut spielen</button>
                 </div>
 
             </div>
